@@ -30,8 +30,9 @@ public class QRCode extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		String website = request.getParameter("website");
+		QRCodeUtil qrcode = new QRCodeUtil();
 		try {
-			QRCodeUtil.createQRCode(website, response.getOutputStream());
+		    qrcode.createQRCode(website, response.getOutputStream());
 		} catch (WriterException e) {
 			e.printStackTrace();
 		}

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"> 
+    <title>二维码生成工具</title>
+    <link rel="stylesheet" href="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<style type="text/css">
+</style>
+ <body>
+  <div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12">
+            <h3 class="text-center">
+                二维码生成
+            </h3>
+            <div class="tabbable" id="tabs-353334" style="padding-left: 200px;padding-right: 200px;">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                         <a href="#panel-1" data-toggle="tab">第一部分</a>
+                    </li>
+                    <li>
+                         <a href="#panel-2" data-toggle="tab">第二部分</a>
+                    </li>
+                    <li>
+                         <a href="#panel-3" data-toggle="tab">第三部分</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="panel-1">
+                        <p style="padding-top: 40px;">
+                            输入文字信息二维码:
+                        </p>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="website">
+                    </div>
+                    <button onclick="qrcode()">生成二维码</button>
+                    </div>
+                    <div class="tab-pane" id="panel-2">
+                        <p style="padding-top: 40px;">
+                            文件生成二维码:
+                        </p>
+                        <form action="upload" enctype="multipart/form-data" method="post">
+                            <br>上传文件：<input type="file" name="file"></br>
+					        <input type="submit" value="生成二维码">
+                        </form>
+                    </div>
+                    <div class="tab-pane" id="panel-3">
+                        <p style="padding-top: 40px;">
+                            内嵌图片二维码:
+                        </p>
+                        <form action="merge" enctype="multipart/form-data" method="post">
+                            <br>上传二维码：<input type="file" name="file1"></br>
+                            <br>上传文件：<input type="file" name="file2"></br>
+                            <input type="submit" value="生成内嵌二维码">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+function qrcode(){
+    var websiteValue = document.getElementById("website").value;
+    window.location.href="qrcode?website="+websiteValue;
+}
+</script>
+ </body>
+</html>

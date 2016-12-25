@@ -9,23 +9,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     <title>二维码</title>
-    <script src="js/jquery.min.js"></script>
-    <script>
-    	$(function(){
-    		$("input[type=submit]").click(function(e){
-    			e.preventDefault();
-    			$("#qrcode_div").empty().append("<img id='qrImg' />");
-    			$("#qrImg").attr("src", "qrcode?website="+$("input[type=text][name=website]").val());
-    		});
-    	});
-    </script>
   </head>
   
   <body>
-    <form>
+    <form action="qrcode">
 		网址<input type="text" name="website" />
 		<input type="submit" value="生成二维码" />
 		<div id="qrcode_div"></div>
     </form>
+
   </body>
 </html>

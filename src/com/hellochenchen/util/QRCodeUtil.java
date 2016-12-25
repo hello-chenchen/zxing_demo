@@ -17,8 +17,8 @@ public class QRCodeUtil {
 	
 	private static final int BLACK = 0xFF000000;
 	private static final int WHITE = 0xFFFFFFFF;
-	private static final int WIDTH = 666;
-	private static final int HEIGHT = 666;
+	private static final int WIDTH = 600;
+	private static final int HEIGHT = 600;
 	
 	/**  
 	 * createQRCode:(生成二维码图片流). <br/>  

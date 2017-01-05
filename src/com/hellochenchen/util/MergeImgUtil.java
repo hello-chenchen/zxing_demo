@@ -11,8 +11,12 @@ package com.hellochenchen.util;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
@@ -33,9 +37,10 @@ import com.sun.image.codec.jpeg.JPEGImageEncoder;
  */
 public class MergeImgUtil {
 
-    public String MergeImages(String imgFilePath, String imgFilePath1)
+    public byte[] MergeImages(String imgFilePath, String imgFilePath1)
     {
         String mergeFilePath = null;
+        byte[] imgBuff = null;
         mergeFilePath = "D:\\demo\\demo3.jpg";
         try {
             InputStream image1 = new FileInputStream(imgFilePath);
@@ -47,6 +52,7 @@ public class MergeImgUtil {
             OutputStream outImage=new FileOutputStream(mergeFilePath);
             JPEGImageEncoder enc=JPEGCodec.createJPEGEncoder(outImage);
             enc.encode(image3);
+            imgBuff = getBytes(mergeFilePath);
             image1.close();
             image2.close();
             outImage.close();
@@ -55,7 +61,42 @@ public class MergeImgUtil {
             e.printStackTrace();
         }
         
-        return mergeFilePath;
+        return imgBuff;
     }
+    
+    /**
+     * 
+     * getBytes:(这里用一句话描述这个方法的作用). <br/>  
+     * TODO(这里描述这个方法适用条件 – 可选).<br/>  
+     * TODO(这里描述这个方法的执行流程 – 可选).<br/>  
+     * TODO(这里描述这个方法的使用方法 – 可选).<br/>  
+     * TODO(这里描述这个方法的注意事项 – 可选).<br/>  
+     *  
+     * @author hello_chenchen  
+     * @param filePath
+     * @return  
+     * @since JDK 1.8.0_111
+     */
+    private static byte[] getBytes(String filePath){  
+        byte[] buffer = null;  
+        try {  
+            File file = new File(filePath);  
+            FileInputStream fis = new FileInputStream(file);  
+            ByteArrayOutputStream bos = new ByteArrayOutputStream(1000);  
+            byte[] b = new byte[1000];  
+            int n;  
+            while ((n = fis.read(b)) != -1) {  
+                bos.write(b, 0, n);  
+            }  
+            fis.close();  
+            bos.close();  
+            buffer = bos.toByteArray();  
+        } catch (FileNotFoundException e) {  
+            e.printStackTrace();  
+        } catch (IOException e) {  
+            e.printStackTrace();  
+        }  
+        return buffer;  
+    }  
 }
   

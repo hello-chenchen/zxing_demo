@@ -50,13 +50,15 @@ public class Merge extends HttpServlet{
         String filePath2 = fileNameList.get(1);
         
         MergeImgUtil mergeimage = new MergeImgUtil();
-        String mergeFilePath = mergeimage.MergeImages(filePath1, filePath2);
-        QRCodeUtil qrcode = new QRCodeUtil();
-        try {
-            qrcode.createQRCode(mergeFilePath, resp.getOutputStream());
-        } catch (WriterException e) {
-            e.printStackTrace();
-        }
+        byte[] mergeBuff = mergeimage.MergeImages(filePath1, filePath2);
+        resp.getOutputStream().write(mergeBuff);
+//        resp.flush();
+//        QRCodeUtil qrcode = new QRCodeUtil();
+//        try {
+//            qrcode.createQRCode(mergeFilePath, resp.getOutputStream());
+//        } catch (WriterException e) {
+//            e.printStackTrace();
+//        }
 
         
     }
